@@ -8,7 +8,63 @@ export default class App extends Component {
             isLoading : true,
           }
 
-  
+  model =  {
+            __metadata: {
+                uri: "https://services.odata.org/(S(1pvfcxajki3ouml43k5wnex3))/V2/OData/OData.svc/Products(0)",
+                type: "ODataDemo.Product"
+            },
+            ID: 0,
+            Name: "Oven",
+            Description: "Classic One",
+            ReleaseDate: null,
+            DiscontinuedDate: null,
+            Rating: 4,
+            Price: "2.5",
+            Category: {
+                __deferred: {
+                    uri: "https://services.odata.org/(S(1pvfcxajki3ouml43k5wnex3))/V2/OData/OData.svc/Products(0)/Category"
+                }
+            },
+            Supplier: {
+                __deferred: {
+                    uri: "https://services.odata.org/(S(1pvfcxajki3ouml43k5wnex3))/V2/OData/OData.svc/Products(0)/Supplier"
+                }
+            }
+        }
+
+
+post_data = () => {
+
+
+
+        fetch('https://services.odata.org/V2/(S(1pvfcxajki3ouml43k5wnex3))/OData/OData.svc/Products', {
+          
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.model),
+        });
+
+}
+
+ // const headers = new Headers();
+    
+ //     headers.append('Content-Type', 'application/json')
+ //     headers.append('Accept','application/json')
+
+
+// const options = {
+//    method : 'POST',
+//    headers,
+//    body : JSON.stringify(model),
+ 
+//  }
+
+  //const request = new Request ('https://services.odata.org/V2/(S(1pvfcxajki3ouml43k5wnex3))/OData/OData.svc/Products',options)
+
+
 
 //Fucntion
 //updateState = () => this.setState({myState: 'New Data has arrived' })  
@@ -98,7 +154,8 @@ if(val.Name!= "TEEEESSSTT")
   <View>
 
         <Button onPress={() => {
-                alert("I am pressed")
+                this.post_data();
+                alert("did it")
               }}
               title="Press To ADD Products"/>
 
